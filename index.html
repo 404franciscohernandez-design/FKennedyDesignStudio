@@ -378,13 +378,13 @@ content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline' h
 <body>
 <button id="startButton">Toca para comenzar</button>
 <script>
-  document.getElementById("startButton").addEventListener("click", function(){window.location.href = "personalizacion.html";});
-    
+  document.getElementById("startButton").addEventListener("click", function(){window.location.href = "personalizacion.html";
+});
 </script>
 <!-- NAV -->
 <nav>
 
-  <section id="inicio-section"></section>
+  <!--<section id="inicio-section"></section>-->
   <div class="nav-logo">Kennedy <span>Design</span></div>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
@@ -406,7 +406,7 @@ content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline' h
     <a href="#contacto" class="btn">Cotiza gratis</a>
     
     <button class="btn" id="btn-comenzar" style="background: #fff; color: #000; font-weight: bold; padding: 12px 24px; border-radius: 5px; cursor: pointer; border: none; margin-left: 10px;">
-        Toca para comenzar
+      
     </button>
 </div>
     </div>
@@ -698,32 +698,11 @@ content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline' h
 
         <!-- Botón Principal de Acción -->
         <div class="main-action-wrapper">
-          <button class="btn-start" id="btn-comenzar">Toca para comenzar</button>
+          <!--<button class="btn-start" id="btn-comenzar">Toca para comenzar</button>-->
           <button class="btn-toca-comenzar" onclick="openOnboardingModal()">
                 <span class="icon-hand">👆</span> TOCA PARA COMENZAR
             </button>
-        </div>
-
-        <!-- Barra de Utilidades Inferior -->
-        <div class="moments-utilities">
-            <div class="utility-item" onclick="showPickupInfo()">
-                <span class="utility-icon">🛍️</span>
-                <div class="utility-text">
-                    <strong>RECOGE AQUÍ</strong>
-                    <p>tus pedidos</p>
-                </div>
-            </div>
-            <div class="utility-item search-trigger">
-                <span class="utility-icon">🔍</span>
-                <div class="utility-text">
-                    <strong>¿BUSCAS ALGO EN PARTICULAR?</strong>
-                    <input type="text" id="moments-search-bar" placeholder="Buscar producto..." onkeyup="searchProduct(event)">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<script>// 1. Función para los 4 botones de categorías (Regalos, Eventos, Stickers, Negocios)
+            <script>// 1. Función para los 4 botones de categorías (Regalos, Eventos, Stickers, Negocios)
 function filterCategory(category) {
     alert(`Has seleccionado la categoría: ${category.toUpperCase()}. Redirigiendo al catálogo o filtrando portafolio...`);
     
@@ -765,6 +744,28 @@ function searchProduct(event) {
         }
     }
 }</script>
+        </div>
+
+        <!-- Barra de Utilidades Inferior -->
+        <div class="moments-utilities">
+            <div class="utility-item" onclick="showPickupInfo()">
+                <span class="utility-icon">🛍️</span>
+                <div class="utility-text">
+                    <strong>RECOGE AQUÍ</strong>
+                    <p>tus pedidos</p>
+                </div>
+            </div>
+            <div class="utility-item search-trigger">
+                <span class="utility-icon">🔍</span>
+                <div class="utility-text">
+                    <strong>¿BUSCAS ALGO EN PARTICULAR?</strong>
+                    <input type="text" id="moments-search-bar" placeholder="Buscar producto..." onkeyup="searchProduct(event)">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Modal emergente para "Toca para comenzar" -->
 <div id="onboarding-modal" class="moments-modal">
     <div class="modal-content">
