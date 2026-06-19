@@ -379,6 +379,7 @@ content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline' h
 
 <!-- NAV -->
 <nav>
+  <section id="inicio-section"></section>
   <div class="nav-logo">Kennedy <span>Design</span></div>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
@@ -686,7 +687,8 @@ content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline' h
 
         <!-- Botón Principal de Acción -->
         <div class="main-action-wrapper">
-            <button class="btn-toca-comenzar" onclick="openOnboardingModal()">
+          <button class="btn-start" id="btn-comenzar">Toca para comenzar</button>
+          <button class="btn-toca-comenzar" onclick="openOnboardingModal()">
                 <span class="icon-hand">👆</span> TOCA PARA COMENZAR
             </button>
         </div>
@@ -764,7 +766,133 @@ function searchProduct(event) {
         </div>
     </div>
 </div>
+</section> <section id="personalizacion-section" style="display: none; padding: 40px 20px; max-width: 1200px; margin: 0 auto; font-family: Arial, sans-serif;">
+        
+        <button id="btn-regresar" style="background: none; border: none; color: #aaa; cursor: pointer; font-size: 1rem; margin-bottom: 20px;">
+            ← Volver al inicio
+        </button>
+        
+        <h2 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; border-bottom: 2px solid #222; padding-bottom: 15px; color: #fff;">
+            Personalización
+        </h2>
 
+        <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+            <div style="flex: 1; min-width: 300px; background: #111; padding: 30px; border-radius: 12px; border: 1px solid #222;">
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">1. Selecciona el Objeto:</label>
+                    <select id="select-objeto" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px;">
+                        <option value="taza">☕ Taza Personalizada</option>
+                        <option value="playera">👕 Playera Sublimada</option>
+                        <option value="calcomania">🏷️ Calcomanía / Sticker</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">2. Color Base:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" class="color-btn" data-color="#ffffff" style="width: 30px; height: 30px; border-radius: 50%; background: #ffffff; border: 2px solid #fff; cursor: pointer;"></button>
+                        <button type="button" class="color-btn" data-color="#ff3b30" style="width: 30px; height: 30px; border-radius: 50%; background: #ff3b30; border: 2px solid transparent; cursor: pointer;"></button>
+                        <button type="button" class="color-btn" data-color="#007aff" style="width: 30px; height: 30px; border-radius: 50%; background: #007aff; border: 2px solid transparent; cursor: pointer;"></button>
+                        <button type="button" class="color-btn" data-color="#111111" style="width: 30px; height: 30px; border-radius: 50%; background: #111111; border: 2px solid transparent; cursor: pointer;"></button>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">3. Tamaño:</label>
+                    <select id="select-tamano" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px;">
+                        <option value="1">Estándar</option>
+                        <option value="1.2">Grande (XL / 15oz)</option>
+                        <option value="0.8">Chico / Compacto</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">4. Orientación del Diseño:</label>
+                    <select id="select-orientacion" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px;">
+                        <option value="rotate(0deg)">Vertical</option>
+                        <option value="rotate(90deg)">Horizontal</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem;">5. Texto del diseño:</label>
+                    <input type="text" id="input-texto" value="Mi Diseño" style="width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; box-sizing: border-box;">
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 300px; background: #0a0a0a; border: 2px dashed #333; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; position: relative;">
+                <span style="position: absolute; top: 15px; left: 15px; font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Vista Previa en Vivo</span>
+                <div id="vista-previa-objeto" style="width: 200px; height: 200px; background: #fff; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; border-radius: 20px; transition: all 0.3s ease; text-align: center; padding: 10px; box-sizing: border-box;">
+                    <span id="texto-render">Mi Diseño</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const seccionInicio = document.getElementById('inicio-section');
+        const seccionPersonalizacion = document.getElementById('personalizacion-section');
+        const btnComenzar = document.getElementById('btn-comenzar');
+        const btnRegresar = document.getElementById('btn-regresar');
+
+        btnComenzar.addEventListener('click', () => {
+            seccionInicio.style.display = 'none';
+            seccionPersonalizacion.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        btnRegresar.addEventListener('click', () => {
+            seccionPersonalizacion.style.display = 'none';
+            seccionInicio.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const selectObjeto = document.getElementById('select-objeto');
+        const selectTamano = document.getElementById('select-tamano');
+        const selectOrientacion = document.getElementById('select-orientacion');
+        const inputTexto = document.getElementById('input-texto');
+        const lienzoObjeto = document.getElementById('vista-previa-objeto');
+        const textoRender = document.getElementById('texto-render');
+        const botonesColor = document.querySelectorAll('.color-btn');
+
+        let colorActual = "#ffffff";
+
+        function actualizarSimulador() {
+            textoRender.innerText = inputTexto.value || "[Texto Vacío]";
+            const objeto = selectObjeto.value;
+            if (objeto === 'taza') {
+                lienzoObjeto.style.borderRadius = "20px 50px 50px 20px";
+            } else if (objeto === 'playera') {
+                lienzoObjeto.style.borderRadius = "4px";
+            } else if (objeto === 'calcomania') {
+                lienzoObjeto.style.borderRadius = "50%";
+            }
+            lienzoObjeto.style.backgroundColor = colorActual;
+            lienzoObjeto.style.color = (colorActual === '#111111') ? '#ffffff' : '#000000';
+            const escala = selectTamano.value;
+            const rotacion = selectOrientacion.value;
+            lienzoObjeto.style.transform = `scale(${escala}) ${rotacion}`;
+        }
+
+        selectObjeto.addEventListener('change', actualizarSimulador);
+        selectTamano.addEventListener('change', actualizarSimulador);
+        selectOrientacion.addEventListener('change', actualizarSimulador);
+        inputTexto.addEventListener('input', actualizarSimulador);
+
+        botonesColor.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                botonesColor.forEach(b => b.style.borderColor = 'transparent');
+                colorActual = e.target.getAttribute('data-color');
+                e.target.style.borderColor = colorActual === '#ffffff' ? '#000' : '#fff';
+                actualizarSimulador();
+            });
+        });
+
+        actualizarSimulador();
+    </script>
+    </body>
+</html>
 <!-- CTA -->
 <section class="cta-section" id="contacto">
   <h2>¿Listo para crear<br>algo increíble?</h2>
